@@ -1,7 +1,7 @@
 {
   "name": "get-medium",
-  "version": "1.0.0",
-  "description": "",
+  "version": "1.0.1",
+  "description": "easy retrieval of all articles from an account on the Medium website",
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -16,7 +16,7 @@
   },
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/garvsl/get-medium.git"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -24,8 +24,13 @@
     "build": "tsc",
     "prepublishOnly": "npm run build"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "medum",
+    "articles",
+    "scrape",
+    "blog"
+  ],
+  "author": "Garv",
   "license": "ISC",
   "dependencies": {
     "axios": "^1.7.9"
