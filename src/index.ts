@@ -32,8 +32,9 @@ async function graphqlMedium(
         Referer: `https://medium.com/@${username}`,
         "graphql-operation": "UserProfileQuery",
         Cookie: cookieString,
-        "Cache-Control": "no-cache",
+        "Cache-Control": "public, max-age=3600",
         Pragma: "no-cache",
+        cache: "force-cache",
       },
     }
   );
@@ -45,6 +46,7 @@ export async function getMedium(username: string): Promise<any[]> {
     const axiosInstance = axios.create({
       baseURL: "https://medium.com",
       withCredentials: true,
+      method: "cors",
       headers: {
         Accept: "*/*",
         "Accept-Language": "en-US,en;q=0.9",
@@ -54,6 +56,8 @@ export async function getMedium(username: string): Promise<any[]> {
         "Sec-Fetch-Dest": "empty",
         "Sec-Fetch-Mode": "cors",
         "Sec-Fetch-Site": "same-origin",
+        "Cache-Control": "public, max-age=3600",
+        cache: "force-cache",
         Connection: "keep-alive",
       },
     });
