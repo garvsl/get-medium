@@ -40,59 +40,58 @@ async function graphqlMedium(
   return res;
 }
 
-async function getMedium(username: string) {
-  const axiosInstance = axios.create({
-    baseURL: "https://medium.com",
-    withCredentials: true,
-    headers: {
-      Accept: "*/*",
-      "Accept-Language": "en-US,en;q=0.9",
-      "Accept-Encoding": "gzip, deflate, br",
-      "User-Agent":
-        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
-      "Sec-Fetch-Dest": "empty",
-      "Sec-Fetch-Mode": "cors",
-      "Sec-Fetch-Site": "same-origin",
-      Connection: "keep-alive",
-    },
-  });
+export async function getMedium(username: string): Promise<any[]> {
+  try {
+    const axiosInstance = axios.create({
+      baseURL: "https://medium.com",
+      withCredentials: true,
+      headers: {
+        Accept: "*/*",
+        "Accept-Language": "en-US,en;q=0.9",
+        "Accept-Encoding": "gzip, deflate, br",
+        "User-Agent":
+          "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
+        "Sec-Fetch-Dest": "empty",
+        "Sec-Fetch-Mode": "cors",
+        "Sec-Fetch-Site": "same-origin",
+        Connection: "keep-alive",
+      },
+    });
 
-  const initialResponse = await axiosInstance.get(`/@${username}`);
+    const initialResponse = await axiosInstance.get(`/@${username}`);
 
-  const cookies = initialResponse.headers["set-cookie"];
-  const cookieString =
-    cookies?.map((cookie) => cookie.split(";")[0]).join("; ") || "";
+    const cookies = initialResponse.headers["set-cookie"];
+    const cookieString =
+      cookies?.map((cookie) => cookie.split(";")[0]).join("; ") || "";
 
-  let results: any[] = [];
-  const res = await graphqlMedium(axiosInstance, username, cookieString);
-  const data = await res.data[0].data.userResult;
-  const postsCover = data.homepagePostsConnection;
-  const posts = postsCover.posts;
-  const id = data.id;
-  const name = data.name;
-  results = results.concat(posts);
-  let pagination = postsCover.pagingInfo.next;
-  while (pagination && pagination.from) {
-    const from = pagination.from;
-    const paginatedRes = await graphqlMedium(
-      axiosInstance,
-      username,
-      cookieString,
-      from,
-      id
-    );
-    const paginatedCover =
-      paginatedRes.data[0].data.userResult.homepagePostsConnection;
-    const paginatedPosts = paginatedCover.posts;
-    results = results.concat(paginatedPosts);
-    pagination = paginatedCover.pagingInfo.next;
+    let results: any[] = [];
+    const res = await graphqlMedium(axiosInstance, username, cookieString);
+    const data = await res.data[0].data.userResult;
+    const postsCover = data.homepagePostsConnection;
+    const posts = postsCover.posts;
+    const id = data.id;
+    const name = data.name;
+    results = results.concat(posts);
+    let pagination = postsCover.pagingInfo.next;
+    while (pagination && pagination.from) {
+      const from = pagination.from;
+      const paginatedRes = await graphqlMedium(
+        axiosInstance,
+        username,
+        cookieString,
+        from,
+        id
+      );
+      const paginatedCover =
+        paginatedRes.data[0].data.userResult.homepagePostsConnection;
+      const paginatedPosts = paginatedCover.posts;
+      results = results.concat(paginatedPosts);
+      pagination = paginatedCover.pagingInfo.next;
+    }
+
+    return results;
+  } catch (e) {
+    console.error(e);
+    return [];
   }
-
-  return results;
-}
-
-try {
-  console.log(await getMedium("ishmamF"));
-} catch (e) {
-  console.error(e);
 }
