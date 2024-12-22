@@ -1,21 +1,17 @@
-npm version patch
-npm publish
-npm run dev
-
 # get-npm-packages
 
-Get NPM Packages is a lightweight & easy to use Javascript library designed for easy retrieval of all packages from an account on the npmjs website. It simplifies access to an accounts package information, enabling developers to integrate the data in their applications like portfolios, etc.
+Get Medium is a lightweight & easy to use Javascript library designed for easy retrieval of all articles from an account on the Medium website. It simplifies access to an accounts article information, enabling developers to integrate the data in their applications like portfolios, etc.
 
 ## Installation
 
 ```bash
-npm i get-npm-packages
+npm i get-medium
 ```
 
 ## Simple Usage
 
 ```javascript
-const data = await getPackages("garvsl"); // Desired username
+const data = await getMedium("garvsl"); // Desired username
 
 console.log(data);
 ```
@@ -23,37 +19,53 @@ console.log(data);
 ## Sample output
 
 ```json
-{
-  "total": 3,
-  "username": "garvsl",
-  "packages": [
-    {
-      "id": 6878961,
-      "title": "get-hackathons",
-      "description": "Easy retrieval of Hackathon data from the Devpost website",
-      "version": "2.0.0",
-      "updated": "2 hours ago",
-      "downloads": 0,
-      "link": "https://www.npmjs.com/package/get-hackathons"
+[
+  {
+    "id": "2322ff8e0ec7",
+    "title": "I met with the FBI 3 days into launching my startup",
+    "previewImage": {
+      "id": "1*vJfnx244qLxXUe-vsQUJHw.png",
+      "__typename": "ImageMetadata",
+      "focusPercentX": null,
+      "focusPercentY": null,
+      "alt": null
     },
-    {
-      "id": 6821262,
-      "title": "snap-locator",
-      "description": "Snap Locator is a lightweight JavaScript library designed for easy retrieval of location data from the Snap Locator website. It simplifies access to store information, enabling developers to integrate location-based services into their applications effort",
-      "version": "1.0.1",
-      "updated": "a month ago",
-      "downloads": 132,
-      "link": "https://www.npmjs.com/package/snap-locator"
+    "extendedPreviewContent": {
+      "subtitle": "When we launched our startup, I never imagined my first “investor meeting” would involve the FBI. There I was, in a crowded coffee shop…",
+      "__typename": "PreviewContent",
+      "isFullContent": false
     },
-    {
-      "id": 6597803,
-      "title": "screencapturekit-node-wrapper",
-      "description": "Added some ease of use capabilities and made into package for simple integration. No Audio recording",
-      "version": "1.0.8",
-      "updated": "6 days ago",
-      "downloads": 660,
-      "link": "https://www.npmjs.com/package/screencapturekit-node-wrapper"
-    }
-  ]
-}
+    "__typename": "Post",
+    "creator": {
+      "id": "21a8b02c0df4",
+      "name": "Garv",
+      "__typename": "User",
+      "viewerEdge": [Object],
+      "bio": "",
+      "imageId": "0*h9bI7s7B1FyvwK3q",
+      "membership": [Object],
+      "username": "garvsl",
+      "customDomainState": [Object],
+      "hasSubdomain": false,
+      "verifications": [Object]
+    },
+    "isPublished": true,
+    "mediumUrl": "https://blog.garvsl.com/i-met-with-the-fbi-3-days-into-launching-my-startup-2322ff8e0ec7",
+    "collection": null,
+    "isLimitedState": false,
+    "allowResponses": true,
+    "postResponses": { "count": 3, "__typename": "PostResponses" },
+    "visibility": "PUBLIC",
+    "clapCount": 102,
+    "isLocked": false,
+    "firstPublishedAt": 1733520029162,
+    "latestPublishedAt": 1733520029162,
+    "pinnedAt": 0,
+    "readingTime": 5.1946540880503145,
+    "sequence": null,
+    "isSeries": false,
+    "uniqueSlug": "i-met-with-the-fbi-3-days-into-launching-my-startup-2322ff8e0ec7",
+    "pinnedByCreatorAt": 0
+  }
+]
 ```
