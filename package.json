@@ -1,6 +1,6 @@
 {
   "name": "get-medium",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "easy retrieval of all articles from an account on the Medium website",
   "type": "module",
   "main": "dist/index.js",
