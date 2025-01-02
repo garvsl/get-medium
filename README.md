@@ -1,4 +1,4 @@
-# get-npm-packages
+# get-medium
 
 Get Medium is a lightweight & easy to use Javascript library designed for easy retrieval of all articles from an account on the Medium website. It simplifies access to an accounts article information, enabling developers to integrate the data in their applications like portfolios, etc.
 
